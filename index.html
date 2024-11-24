@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dinaminė duomenų anketa</title>
+        <link rel="stylesheet" href="style.css" />
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+        <div id="welcome-screen">
+            <h1>Dinaminė duomenų anketa</h1>
+            <button onclick="startSurvey()">Pradėti</button>
+        </div>
+
+        <!-- Survey Form -->
+        <div id="survey-form" style="display: none">
+            <h1>Dinaminė duomenų anketa</h1>
+            <form>
+                <!-- Personal Information -->
+                <div id="step1">
+                    <label for="sex">Lytis:</label>
+                    <select id="sex" name="sex" required>
+                        <option value="dnone">-</option>
+                        <option value="male">Vyras</option>
+                        <option value="female">Moteris</option></select
+                    ><br />
+
+                    <label for="name">Vardas:</label>
+                    <input type="text" id="name" name="name" required /><br />
+
+                    <label for="second-name">Antras vardas:</label>
+                    <input
+                        type="text"
+                        id="second-name"
+                        name="second-name"
+                    /><br />
+
+                    <label for="surname">Pavardė:</label>
+                    <input
+                        type="text"
+                        id="surname"
+                        name="surname"
+                        required
+                    /><br />
+
+                    <label for="personal-code">Asmens kodas:</label>
+                    <input
+                        type="text"
+                        id="personal-code"
+                        name="personal-code"
+                        required
+                        oninput="calculateBirthdate()"
+                    /><br />
+
+                    <label for="birthdate">Gimimo data:</label>
+                    <input
+                        type="text"
+                        id="birthdate"
+                        name="birthdate"
+                        readonly
+                    /><br />
+                    <button type="button" onclick="nextStep(2)">Kitas</button>
+                </div>
+
+                <!-- Education -->
+                <div id="step2" style="display: none">
+                    <label for="education">Išsilavinimas:</label>
+                    <select
+                        id="education"
+                        name="education"
+                        required
+                        onchange="toggleQualificationFields()"
+                    >
+                        <option value="primary">Pagrindinis</option>
+                        <option value="secondary">Vidurinis</option>
+                        <option value="vocational">Profesinis</option>
+                        <option value="higher-college">
+                            Aukštasis - Kolegijinis
+                        </option>
+                        <option value="higher-university">
+                            Aukštasis - Universitetinis
+                        </option></select
+                    ><br />
+
+                    <label for="last-educational-institution"
+                        >Paskutinė baigta mokslo / studijų įstaiga:</label
+                    >
+                    <input
+                        type="text"
+                        id="last-educational-institution"
+                        name="last-educational-institution"
+                    /><br />
+
+                    <label for="graduation-year">Baigimo metai:</label>
+                    <input
+                        type="number"
+                        id="graduation-year"
+                        name="graduation-year"
+                    /><br />
+
+                    <!-- Conditional Qualification and Academic Degree Fields -->
+                    <div id="qualification-fields" style="display: none">
+                        <label for="qualification"
+                            >Kvalifikacija (specialybės pavadinimas):</label
+                        >
+                        <input
+                            type="text"
+                            id="qualification"
+                            name="qualification"
+                        /><br />
+
+                        <label for="academic-degree">Mokslo laipsnis:</label>
+                        <input
+                            type="text"
+                            id="academic-degree"
+                            name="academic-degree"
+                        /><br />
+                    </div>
+                    <button type="button" onclick="nextStep(3)">Kitas</button>
+                </div>
+
+                <!-- Contact Information -->
+                <div id="step3" style="display: none">
+                    <label for="phone-number">Telefono numeris:</label>
+                    <input
+                        type="tel"
+                        id="phone-number"
+                        name="phone-number"
+                        required
+                    /><br />
+
+                    <label for="email">El. Paštas:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                    /><br />
+
+                    <label for="address">Gyvenamoji vieta (adresas):</label>
+                    <input
+                        type="text"
+                        id="address"
+                        name="address"
+                        required
+                    /><br />
+                    <button type="button" onclick="nextStep(4)">Kitas</button>
+                </div>
+
+                <!-- Marital Status -->
+                <div id="step4" style="display: none">
+                    <label for="marital-status">Vedybinė padėtis:</label>
+                    <select id="marital-status" name="marital-status" required>
+                        <option value="unmarried">Nevedęs / Netekėjusi</option>
+                        <option value="married">Vedęs / Ištekėjusi</option>
+                        <option value="divorced">
+                            Išsiskyręs(-usi)
+                        </option></select
+                    ><br />
+
+                    <div id="spouse-info" style="display: none">
+                        <label for="spouse-name">Sutuoktinis(-ė) vardas:</label>
+                        <input
+                            type="text"
+                            id="spouse-name"
+                            name="spouse-name"
+                        /><br />
+
+                        <label for="spouse-surname"
+                            >Sutuoktinis(-ė) pavardė:</label
+                        >
+                        <input
+                            type="text"
+                            id="spouse-surname"
+                            name="spouse-surname"
+                        /><br />
+                    </div>
+                    <button type="button" onclick="nextStep(5)">Kitas</button>
+                </div>
+
+                <!-- Professional Status -->
+                <div id="step5" style="display: none;">
+                <label for="profession-status">Profesinė padėtis:</label>
+                <select
+                    id="profession-status"
+                    name="profession-status"
+                    required
+                >
+                <option value="none">-</option>
+                    <option value="studying">Studijuoju</option>
+                    <option value="working">Dirbu</option>
+                    <option value="unemployed">Nedirbu</option>
+                    <option value="parental-leave">
+                        Motinystės / Tėvystės atostogose
+                    </option>
+                    <option value="workingandstudying">Studijuoju ir dirbu</option></select
+                ><br />
+
+                <div id="study-info" style="display: none">
+                    <label for="study-level">Studijų pakopa:</label>
+                    <input
+                        type="text"
+                        id="study-level"
+                        name="study-level"
+                    /><br />
+
+                    <label for="study-year">Kursas:</label>
+                    <input
+                        type="number"
+                        id="study-year"
+                        name="study-year"
+                    /><br />
+
+                    <label for="study-institution">Įstaiga:</label>
+                    <input
+                        type="text"
+                        id="study-institution"
+                        name="study-institution"
+                    /><br />
+
+                    <label for="expected-graduation"
+                        >Tikėtini baigimo metai:</label
+                    >
+                    <input
+                        type="number"
+                        id="expected-graduation"
+                        name="expected-graduation"
+                    /><br />
+                </div>
+
+                <div id="work-info" style="display: none">
+                    <label for="workplace">Darbo įstaiga:</label>
+                    <input type="text" id="workplace" name="workplace" /><br />
+
+                    <label for="position">Pareigos:</label>
+                    <input type="text" id="position" name="position" /><br />
+                </div>
+
+                <div id="unemployment-info" style="display: none">
+                    <label for="unemployment-reason">Nedarbo priežastis:</label>
+                    <input
+                        type="text"
+                        id="unemployment-reason"
+                        name="unemployment-reason"
+                    /><br />
+                </div>
+
+                <div id="leave-info" style="display: none">
+                    <label for="leave-end">Atostogų pabaiga:</label>
+                    <input type="date" id="leave-end" name="leave-end" /><br />
+                </div>
+
+                <!-- Work Experience -->
+                <label for="work-experience">Darbo patirtis (metai):</label>
+                <input
+                    type="number"
+                    id="work-experience"
+                    name="work-experience"
+                    required
+                /><br />
+
+                <!-- Work Area -->
+                <label for="work-area">Darbo sritis:</label>
+                <select id="work-area" name="work-area" required>
+                    <option value="law">Teisė</option>
+                    <option value="public-sector">Viešasis sektorius</option>
+                    <option value="healthcare">Sveikatos apsauga</option>
+                    <option value="pharmacy">Farmacija</option>
+                    <option value="industry-manufacturing">
+                        Pramonė / Gamyba
+                    </option>
+                    <option value="it">IT</option>
+                    <option value="trade">Prekyba</option>
+                    <option value="defense">Krašto apsauga</option>
+                    <option value="internal-affairs">
+                        Vidaus reikalų sistema
+                    </option>
+                    <option value="customer-service">
+                        Klientų aptarnavimas ir paslaugos
+                    </option>
+                    <option value="transport">Transportas</option>
+                    <option value="culture-entertainment">
+                        Kultūra ir pramogos
+                    </option>
+                    <option value="education-studies">
+                        Švietimas / Studijos
+                    </option></select
+                ><br />
+
+                <input type="submit" value="Pateikti" />
+            </form>
+        </div>      
+
+        <div id="progress-container" style="display: none">
+            <div id="progress-bar"></div>
+        </div>
+        <p id="progress-message" style="display: none; text-align: center;"></p>
+        
+    </body>
+</html>

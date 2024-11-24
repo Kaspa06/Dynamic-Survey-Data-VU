@@ -1,0 +1,88 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #4a6fa5;
+}
+
+/* Initial screen styling */
+#welcome-screen,
+#survey-form {
+    text-align: center;
+    background-color: #6278b7;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #000;
+    width: 400px;
+}
+
+#welcome-screen h1,
+#survey-form h1 {
+    color: #ffffff;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+#welcome-screen button,
+#survey-form button,
+#survey-form input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #ffffff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+#welcome-screen button:hover,
+#survey-form button:hover,
+#survey-form input[type="submit"]:hover {
+    background-color: #e0e0e0;
+}
+
+/* Form input styling */
+#survey-form input[type="text"],
+#survey-form input[type="number"],
+#survey-form input[type="tel"],
+#survey-form input[type="email"],
+#survey-form input[type="date"],
+#survey-form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Progress Bar Styling */
+#progress-container {
+    width: 100%;
+    background-color: #d3d3d3;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    height: 20px;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #4caf50;
+    transition: width 0.4s ease-in-out;
+}
+
+#progress-message {
+    color: #ffffff;
+    font-size: 1em;
+    margin-top: 10px;
+}
