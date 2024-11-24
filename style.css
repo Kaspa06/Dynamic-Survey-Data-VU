@@ -86,3 +86,64 @@ body {
     font-size: 1em;
     margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+    #welcome-screen,
+    #survey-form {
+        width: 90%;
+        padding: 30px;
+    }
+
+    #welcome-screen h1,
+    #survey-form h1 {
+        font-size: 1.5em;
+    }
+
+    #welcome-screen button,
+    #survey-form button,
+    #survey-form input[type="submit"] {
+        font-size: 0.9em;
+    }
+}
+
+/* For screens with max width of 480px (small tablets and large phones) */
+@media (max-width: 480px) {
+    #welcome-screen,
+    #survey-form {
+        padding: 20px;
+    }
+
+    #welcome-screen h1,
+    #survey-form h1 {
+        font-size: 1.3em;
+    }
+
+    #welcome-screen button,
+    #survey-form button,
+    #survey-form input[type="submit"] {
+        font-size: 0.8em;
+    }
+}
+
+/* For screens with max width of 320px (small phones) */
+@media (max-width: 320px) {
+    #welcome-screen,
+    #survey-form {
+        padding: 15px;
+    }
+
+    #welcome-screen h1,
+    #survey-form h1 {
+        font-size: 1.1em;
+    }
+
+    #welcome-screen button,
+    #survey-form button,
+    #survey-form input[type="submit"] {
+        font-size: 0.7em;
+    }
+
+    #progress-message {
+        font-size: 0.9em;
+    }
+}
